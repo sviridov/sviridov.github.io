@@ -1,0 +1,315 @@
+
+<!DOCTYPE HTML>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Emacs: динамическая подсветка Elisp-кода - Свиридов Александр</title>
+	<meta name="author" content="Свиридов Александр">
+
+	
+	<meta name="description" content="22.02.2014 Emacs Emacs: динамическая подсветка Elisp-кода Как ты наверняка знаешь, языком программирования Emacs является Elisp. Его поддержка в &hellip;">
+	
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link href="/atom.xml" rel="alternate" title="Свиридов Александр" type="application/atom+xml">
+	
+	<link rel="canonical" href="http://sviridov.github.io/blog/2014/02/22/emacs-dynamic-elisp-highlighting/">
+	<link href="/favicon.png" rel="shortcut icon">
+	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<link href="/stylesheets/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+	<!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+	<!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><div class="profilepic">
+  <a href="http://sviridov.github.io">
+	
+	<script src="/javascripts/md5.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('.profilepic a').append("<img src='http://www.gravatar.com/avatar/" + MD5("sviridov.vmi@gmail.com") + "?s=160' alt='Profile Picture' style='width: 160px;' />");
+		});
+	</script>
+	
+  </a>
+</div>
+<nav id="sub-nav">
+	<div class="social">
+		
+			<a class="email" href="mailto:sviridov.vmi@gmail.com" title="Email">Email</a>
+		
+		
+		
+		
+		
+			<a class="github" href="https://github.com/sviridov" title="GitHub">GitHub</a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+			<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+	</div>
+</nav>
+
+<section class="aboutme">
+  <p>
+    Team Leader, x01d
+  </p>
+</section>
+
+<hgroup>
+  <h1><a href="/">Свиридов Александр</a></h1>
+  
+</hgroup>
+
+<div class="archive"><a href="/blog/archives">Архив</a></div>
+</header>				
+			</div>
+		</div>	
+		<div class="mid-col">
+			
+				
+			
+			<div class="mid-col-container">
+				<div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+        <div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-22T16:57:57+06:00" data-updated="true" itemprop="datePublished">22.02.2014</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/emacs/'>Emacs</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name">Emacs: динамическая подсветка Elisp-кода</h1>
+	<div class="entry-content" itemprop="articleBody"><p>Как ты наверняка знаешь, языком программирования <a href="http://www.gnu.org/software/emacs/">Emacs</a> является <a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/index.html#Top">Elisp</a>. Его поддержка в стандартной поставке <a href="http://www.gnu.org/software/emacs/">Emacs</a> достаточно хороша. Но вот чего мне действительно не хватает &ndash; это качественной подсветки символов (идентификаторов), в том числе определяемых мной. Ну что же, давай ее добавим.</p>
+
+<!-- more -->
+
+
+<p>В этом нам поможет <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Font-Lock.html">Font Lock mode</a>. Основной способ поиска кода для подсветки в <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Font-Lock.html">Font Lock mode</a> &ndash; это регулярные выражения, но они нам не подходят, так как нам нужен способ выделить символы исходя из их семантики. На этот случай <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Font-Lock.html">Font Lock mode</a> предоставляет возможность передать вместо регулярного выражения особого вида функцию, которая сама осуществит поиск кода для подсветки.</p>
+
+<p>Ограничения накладываемые на такую функцию:</p>
+
+<ul>
+<li>Она должна принимать в качестве аргумента лимит поиска &ndash; точку до которой будет производиться поиск (начиная с текущей точки).</li>
+<li>В случае успешного поиска функция должна:
+
+<ul>
+<li>вернуть не-nil значение;</li>
+<li>передвинуть текущую точку на позицию после найденной части кода;</li>
+<li>сохранить найденную часть кода в <a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Match-Data.html#Match-Data">match-data</a>.</li>
+</ul>
+</li>
+</ul>
+
+
+<p>Пример подсветки имен макросов:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='common-lisp'><span class='line'><span class="p">(</span><span class="nb">defun</span> <span class="nv">highlight-emacs-lisp--matched-symbol</span> <span class="p">()</span>
+</span><span class='line'>  <span class="s">&quot;Возвращает найденный символ (идентификатор)&quot;</span>
+</span><span class='line'>  <span class="p">(</span><span class="nv">intern-soft</span> <span class="p">(</span><span class="nv">buffer-substring</span> <span class="p">(</span><span class="nv">match-beginning</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nv">match-end</span> <span class="mi">0</span><span class="p">))))</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="nb">defun</span> <span class="nv">highlight-emacs-lisp--macro-symbol-p</span> <span class="p">(</span><span class="nc">symbol</span><span class="p">)</span>
+</span><span class='line'>  <span class="s">&quot;Проверка на то, что с символом связан макрос&quot;</span>
+</span><span class='line'>  <span class="p">(</span><span class="nb">eq</span> <span class="ss">&#39;macro</span> <span class="p">(</span><span class="nv">car-safe</span> <span class="p">(</span><span class="nb">symbol-function</span> <span class="nc">symbol</span><span class="p">))))</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="nb">defun</span> <span class="nv">highlight-emacs-lisp-macro</span> <span class="p">(</span><span class="nv">limit</span><span class="p">)</span>
+</span><span class='line'>  <span class="s">&quot;Поиск имен макросов&quot;</span>
+</span><span class='line'>  <span class="p">(</span><span class="nb">loop</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">re-search-forward</span> <span class="s">&quot;[^() \&quot;\t\n&#39;,@]+&quot;</span> <span class="nv">limit</span> <span class="no">t</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">(</span><span class="nb">return</span> <span class="no">nil</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">candidate</span> <span class="p">(</span><span class="nv">highlight-emacs-lisp--matched-symbol</span><span class="p">)))</span>
+</span><span class='line'>      <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nv">highlight-emacs-lisp--macro-symbol-p</span> <span class="nv">candidate</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">(</span><span class="nv">set-match-data</span> <span class="p">(</span><span class="nb">list</span> <span class="p">(</span><span class="nv">match-beginning</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nv">match-end</span> <span class="mi">0</span><span class="p">)))</span>
+</span><span class='line'>        <span class="p">(</span><span class="nb">return</span> <span class="no">t</span><span class="p">)))))</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="nv">font-lock-add-keywords</span> <span class="ss">&#39;emacs-lisp-mode</span>
+</span><span class='line'> <span class="o">&#39;</span><span class="p">((</span><span class="nv">highlight-emacs-lisp-macro</span> <span class="o">.</span> <span class="ss">&#39;font-lock-keyword-face</span><span class="p">)))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Отлично, теперь обобщим этот метод для функций и глобальных переменных, плюс добавим подсветку в <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Lisp-Interaction.html">IELM</a>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class='common-lisp'><span class='line'><span class="p">(</span><span class="nb">defmacro</span> <span class="nv">define-emacs-lisp-symbols-highlighter</span> <span class="p">(</span><span class="nv">name</span> <span class="nv">args</span> <span class="nv">selector</span><span class="p">)</span>
+</span><span class='line'> <span class="o">`</span><span class="p">(</span><span class="nb">defun</span> <span class="o">,</span><span class="nv">name</span> <span class="p">(</span><span class="nv">limit</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">(</span><span class="nb">loop</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">re-search-forward</span> <span class="s">&quot;[^() \&quot;\t\n&#39;,@]+&quot;</span> <span class="nv">limit</span> <span class="no">t</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">(</span><span class="nb">return</span> <span class="no">nil</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="p">(</span><span class="nb">when</span> <span class="p">((</span><span class="k">lambda</span> <span class="o">,</span><span class="nv">args</span> <span class="o">,</span><span class="nv">selector</span><span class="p">)</span>
+</span><span class='line'>             <span class="p">(</span><span class="nv">intern-soft</span> <span class="p">(</span><span class="nv">buffer-substring</span> <span class="p">(</span><span class="nv">match-beginning</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nv">match-end</span> <span class="mi">0</span><span class="p">))))</span>
+</span><span class='line'>        <span class="p">(</span><span class="nv">set-match-data</span> <span class="p">(</span><span class="nb">list</span> <span class="p">(</span><span class="nv">match-beginning</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nv">match-end</span> <span class="mi">0</span><span class="p">)))</span>
+</span><span class='line'>        <span class="p">(</span><span class="nb">return</span> <span class="no">t</span><span class="p">)))))</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="nv">define-emacs-lisp-symbols-highlighter</span> <span class="nv">highlight-emacs-lisp-macro</span> <span class="p">(</span><span class="nc">symbol</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">(</span><span class="nb">eq</span> <span class="ss">&#39;macro</span> <span class="p">(</span><span class="nv">car-safe</span> <span class="p">(</span><span class="nb">symbol-function</span> <span class="nc">symbol</span><span class="p">))))</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="nv">define-emacs-lisp-symbols-highlighter</span> <span class="nv">highlight-emacs-lisp-function</span> <span class="p">(</span><span class="nc">symbol</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">(</span><span class="nb">eq</span> <span class="ss">&#39;lambda</span> <span class="p">(</span><span class="nv">car-safe</span> <span class="p">(</span><span class="nb">symbol-function</span> <span class="nc">symbol</span><span class="p">))))</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="nv">define-emacs-lisp-symbols-highlighter</span> <span class="nv">highlight-emacs-lisp-compiled-or-primitive-function</span> <span class="p">(</span><span class="nc">symbol</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">(</span><span class="nb">or</span> <span class="p">(</span><span class="nv">subrp</span> <span class="p">(</span><span class="nb">symbol-function</span> <span class="nc">symbol</span><span class="p">))</span>
+</span><span class='line'>      <span class="p">(</span><span class="nb">eq</span> <span class="ss">&#39;compiled-function</span> <span class="p">(</span><span class="nb">type-of</span> <span class="p">(</span><span class="nb">symbol-function</span> <span class="nc">symbol</span><span class="p">)))))</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="nv">define-emacs-lisp-symbols-highlighter</span> <span class="nv">highlight-emacs-lisp-global-variable</span> <span class="p">(</span><span class="nc">symbol</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nb">boundp</span> <span class="nc">symbol</span><span class="p">)</span>
+</span><span class='line'>       <span class="p">(</span><span class="nb">not</span> <span class="p">(</span><span class="nb">or</span> <span class="p">(</span><span class="nb">eq</span> <span class="nc">symbol</span> <span class="no">t</span><span class="p">)</span>
+</span><span class='line'>                <span class="p">(</span><span class="nb">eq</span> <span class="nc">symbol</span> <span class="no">nil</span><span class="p">)))))</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="nb">dolist</span> <span class="p">(</span><span class="nv">mode</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">emacs-lisp-mode</span> <span class="nv">inferior-emacs-lisp-mode</span><span class="p">))</span>
+</span><span class='line'>  <span class="p">(</span><span class="nv">font-lock-add-keywords</span> <span class="nv">mode</span>
+</span><span class='line'>    <span class="o">&#39;</span><span class="p">((</span><span class="nv">highlight-emacs-lisp-macro</span> <span class="o">.</span> <span class="ss">&#39;font-lock-keyword-face</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">(</span><span class="nv">highlight-emacs-lisp-function</span> <span class="o">.</span> <span class="ss">&#39;font-lock-function-name-face</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">(</span><span class="nv">highlight-emacs-lisp-compiled-or-primitive-function</span> <span class="o">.</span> <span class="ss">&#39;font-lock-builtin-face</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">(</span><span class="nv">highlight-emacs-lisp-global-variable</span> <span class="o">.</span> <span class="ss">&#39;font-lock-variable-name-face</span><span class="p">))</span>
+</span><span class='line'>    <span class="no">t</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a href="https://github.com/sviridov/.emacs.d/blob/master/config/elisp/init-elisp-highlight.el">Конфиг на Github</a> и результат:</p>
+
+<p><img src="/images/posts/emacs-dynamic-elisp-highlighting.png"></p>
+</div>
+
+</article>
+<nav id="pagenavi">
+  <table width="100%">
+    <tr>
+      <td width="33%">
+        
+        <a href="/blog/2014/02/21/code-madness-join-to-the-dark-side/" title="Code Madness: Join to the Dark side?">&laquo; Code Madness: Join to the Dark side?</a>
+        
+      </td>
+
+      <td width="34%" style="text-align: center">
+        <a href="/blog/archives">Архив</a>
+      </td>
+
+      <td width="33%" style="text-align: right">
+        
+      </td>
+    </tr>
+  </table>
+</nav>
+
+</div>
+			</div>
+			<footer id="footer" class="inner"><p>
+  Свиридов Александр &copy; 2014
+</p>
+
+</footer>
+			
+
+
+
+
+
+
+
+
+
+
+
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,284 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Свиридов Александр]]></title>
+  <link href="http://sviridov.github.io/atom.xml" rel="self"/>
+  <link href="http://sviridov.github.io/"/>
+  <updated>2014-02-24T14:12:30+06:00</updated>
+  <id>http://sviridov.github.io/</id>
+  <author>
+    <name><![CDATA[Свиридов Александр]]></name>
+    <email><![CDATA[sviridov.vmi@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Emacs: динамическая подсветка Elisp-кода]]></title>
+    <link href="http://sviridov.github.io/blog/2014/02/22/emacs-dynamic-elisp-highlighting/"/>
+    <updated>2014-02-22T16:57:57+06:00</updated>
+    <id>http://sviridov.github.io/blog/2014/02/22/emacs-dynamic-elisp-highlighting</id>
+    <content type="html"><![CDATA[<p>Как ты наверняка знаешь, языком программирования <a href="http://www.gnu.org/software/emacs/">Emacs</a> является <a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/index.html#Top">Elisp</a>. Его поддержка в стандартной поставке <a href="http://www.gnu.org/software/emacs/">Emacs</a> достаточно хороша. Но вот чего мне действительно не хватает &ndash; это качественной подсветки символов (идентификаторов), в том числе определяемых мной. Ну что же, давай ее добавим.</p>
+
+<!-- more -->
+
+
+<p>В этом нам поможет <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Font-Lock.html">Font Lock mode</a>. Основной способ поиска кода для подсветки в <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Font-Lock.html">Font Lock mode</a> &ndash; это регулярные выражения, но они нам не подходят, так как нам нужен способ выделить символы исходя из их семантики. На этот случай <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Font-Lock.html">Font Lock mode</a> предоставляет возможность передать вместо регулярного выражения особого вида функцию, которая сама осуществит поиск кода для подсветки.</p>
+
+<p>Ограничения накладываемые на такую функцию:</p>
+
+<ul>
+<li>Она должна принимать в качестве аргумента лимит поиска &ndash; точку до которой будет производиться поиск (начиная с текущей точки).</li>
+<li>В случае успешного поиска функция должна:
+
+<ul>
+<li>вернуть не-nil значение;</li>
+<li>передвинуть текущую точку на позицию после найденной части кода;</li>
+<li>сохранить найденную часть кода в <a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/Match-Data.html#Match-Data">match-data</a>.</li>
+</ul>
+</li>
+</ul>
+
+
+<p>Пример подсветки имен макросов:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='common-lisp'><span class='line'><span class="p">(</span><span class="nb">defun</span> <span class="nv">highlight-emacs-lisp--matched-symbol</span> <span class="p">()</span>
+</span><span class='line'>  <span class="s">&quot;Возвращает найденный символ (идентификатор)&quot;</span>
+</span><span class='line'>  <span class="p">(</span><span class="nv">intern-soft</span> <span class="p">(</span><span class="nv">buffer-substring</span> <span class="p">(</span><span class="nv">match-beginning</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nv">match-end</span> <span class="mi">0</span><span class="p">))))</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="nb">defun</span> <span class="nv">highlight-emacs-lisp--macro-symbol-p</span> <span class="p">(</span><span class="nc">symbol</span><span class="p">)</span>
+</span><span class='line'>  <span class="s">&quot;Проверка на то, что с символом связан макрос&quot;</span>
+</span><span class='line'>  <span class="p">(</span><span class="nb">eq</span> <span class="ss">&#39;macro</span> <span class="p">(</span><span class="nv">car-safe</span> <span class="p">(</span><span class="nb">symbol-function</span> <span class="nc">symbol</span><span class="p">))))</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="nb">defun</span> <span class="nv">highlight-emacs-lisp-macro</span> <span class="p">(</span><span class="nv">limit</span><span class="p">)</span>
+</span><span class='line'>  <span class="s">&quot;Поиск имен макросов&quot;</span>
+</span><span class='line'>  <span class="p">(</span><span class="nb">loop</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">re-search-forward</span> <span class="s">&quot;[^() \&quot;\t\n&#39;,@]+&quot;</span> <span class="nv">limit</span> <span class="no">t</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">(</span><span class="nb">return</span> <span class="no">nil</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="p">(</span><span class="k">let</span> <span class="p">((</span><span class="nv">candidate</span> <span class="p">(</span><span class="nv">highlight-emacs-lisp--matched-symbol</span><span class="p">)))</span>
+</span><span class='line'>      <span class="p">(</span><span class="nb">when</span> <span class="p">(</span><span class="nv">highlight-emacs-lisp--macro-symbol-p</span> <span class="nv">candidate</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">(</span><span class="nv">set-match-data</span> <span class="p">(</span><span class="nb">list</span> <span class="p">(</span><span class="nv">match-beginning</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nv">match-end</span> <span class="mi">0</span><span class="p">)))</span>
+</span><span class='line'>        <span class="p">(</span><span class="nb">return</span> <span class="no">t</span><span class="p">)))))</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="nv">font-lock-add-keywords</span> <span class="ss">&#39;emacs-lisp-mode</span>
+</span><span class='line'> <span class="o">&#39;</span><span class="p">((</span><span class="nv">highlight-emacs-lisp-macro</span> <span class="o">.</span> <span class="ss">&#39;font-lock-keyword-face</span><span class="p">)))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Отлично, теперь обобщим этот метод для функций и глобальных переменных, плюс добавим подсветку в <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Lisp-Interaction.html">IELM</a>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class='common-lisp'><span class='line'><span class="p">(</span><span class="nb">defmacro</span> <span class="nv">define-emacs-lisp-symbols-highlighter</span> <span class="p">(</span><span class="nv">name</span> <span class="nv">args</span> <span class="nv">selector</span><span class="p">)</span>
+</span><span class='line'> <span class="o">`</span><span class="p">(</span><span class="nb">defun</span> <span class="o">,</span><span class="nv">name</span> <span class="p">(</span><span class="nv">limit</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">(</span><span class="nb">loop</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="p">(</span><span class="nb">unless</span> <span class="p">(</span><span class="nv">re-search-forward</span> <span class="s">&quot;[^() \&quot;\t\n&#39;,@]+&quot;</span> <span class="nv">limit</span> <span class="no">t</span><span class="p">)</span>
+</span><span class='line'>        <span class="p">(</span><span class="nb">return</span> <span class="no">nil</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'>      <span class="p">(</span><span class="nb">when</span> <span class="p">((</span><span class="k">lambda</span> <span class="o">,</span><span class="nv">args</span> <span class="o">,</span><span class="nv">selector</span><span class="p">)</span>
+</span><span class='line'>             <span class="p">(</span><span class="nv">intern-soft</span> <span class="p">(</span><span class="nv">buffer-substring</span> <span class="p">(</span><span class="nv">match-beginning</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nv">match-end</span> <span class="mi">0</span><span class="p">))))</span>
+</span><span class='line'>        <span class="p">(</span><span class="nv">set-match-data</span> <span class="p">(</span><span class="nb">list</span> <span class="p">(</span><span class="nv">match-beginning</span> <span class="mi">0</span><span class="p">)</span> <span class="p">(</span><span class="nv">match-end</span> <span class="mi">0</span><span class="p">)))</span>
+</span><span class='line'>        <span class="p">(</span><span class="nb">return</span> <span class="no">t</span><span class="p">)))))</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="nv">define-emacs-lisp-symbols-highlighter</span> <span class="nv">highlight-emacs-lisp-macro</span> <span class="p">(</span><span class="nc">symbol</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">(</span><span class="nb">eq</span> <span class="ss">&#39;macro</span> <span class="p">(</span><span class="nv">car-safe</span> <span class="p">(</span><span class="nb">symbol-function</span> <span class="nc">symbol</span><span class="p">))))</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="nv">define-emacs-lisp-symbols-highlighter</span> <span class="nv">highlight-emacs-lisp-function</span> <span class="p">(</span><span class="nc">symbol</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">(</span><span class="nb">eq</span> <span class="ss">&#39;lambda</span> <span class="p">(</span><span class="nv">car-safe</span> <span class="p">(</span><span class="nb">symbol-function</span> <span class="nc">symbol</span><span class="p">))))</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="nv">define-emacs-lisp-symbols-highlighter</span> <span class="nv">highlight-emacs-lisp-compiled-or-primitive-function</span> <span class="p">(</span><span class="nc">symbol</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">(</span><span class="nb">or</span> <span class="p">(</span><span class="nv">subrp</span> <span class="p">(</span><span class="nb">symbol-function</span> <span class="nc">symbol</span><span class="p">))</span>
+</span><span class='line'>      <span class="p">(</span><span class="nb">eq</span> <span class="ss">&#39;compiled-function</span> <span class="p">(</span><span class="nb">type-of</span> <span class="p">(</span><span class="nb">symbol-function</span> <span class="nc">symbol</span><span class="p">)))))</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="nv">define-emacs-lisp-symbols-highlighter</span> <span class="nv">highlight-emacs-lisp-global-variable</span> <span class="p">(</span><span class="nc">symbol</span><span class="p">)</span>
+</span><span class='line'>  <span class="p">(</span><span class="nb">and</span> <span class="p">(</span><span class="nb">boundp</span> <span class="nc">symbol</span><span class="p">)</span>
+</span><span class='line'>       <span class="p">(</span><span class="nb">not</span> <span class="p">(</span><span class="nb">or</span> <span class="p">(</span><span class="nb">eq</span> <span class="nc">symbol</span> <span class="no">t</span><span class="p">)</span>
+</span><span class='line'>                <span class="p">(</span><span class="nb">eq</span> <span class="nc">symbol</span> <span class="no">nil</span><span class="p">)))))</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="nb">dolist</span> <span class="p">(</span><span class="nv">mode</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">emacs-lisp-mode</span> <span class="nv">inferior-emacs-lisp-mode</span><span class="p">))</span>
+</span><span class='line'>  <span class="p">(</span><span class="nv">font-lock-add-keywords</span> <span class="nv">mode</span>
+</span><span class='line'>    <span class="o">&#39;</span><span class="p">((</span><span class="nv">highlight-emacs-lisp-macro</span> <span class="o">.</span> <span class="ss">&#39;font-lock-keyword-face</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">(</span><span class="nv">highlight-emacs-lisp-function</span> <span class="o">.</span> <span class="ss">&#39;font-lock-function-name-face</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">(</span><span class="nv">highlight-emacs-lisp-compiled-or-primitive-function</span> <span class="o">.</span> <span class="ss">&#39;font-lock-builtin-face</span><span class="p">)</span>
+</span><span class='line'>      <span class="p">(</span><span class="nv">highlight-emacs-lisp-global-variable</span> <span class="o">.</span> <span class="ss">&#39;font-lock-variable-name-face</span><span class="p">))</span>
+</span><span class='line'>    <span class="no">t</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a href="https://github.com/sviridov/.emacs.d/blob/master/config/elisp/init-elisp-highlight.el">Конфиг на Github</a> и результат:</p>
+
+<p><img src="http://sviridov.github.io/images/posts/emacs-dynamic-elisp-highlighting.png"></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Code Madness: Join to the Dark side?]]></title>
+    <link href="http://sviridov.github.io/blog/2014/02/21/code-madness-join-to-the-dark-side/"/>
+    <updated>2014-02-21T18:44:23+06:00</updated>
+    <id>http://sviridov.github.io/blog/2014/02/21/code-madness-join-to-the-dark-side</id>
+    <content type="html"><![CDATA[<p>Как заставить человека перейти на Темную сторону? Все просто:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='common-lisp'><span class='line'><span class="p">(</span><span class="nb">loop</span> <span class="ss">:until</span> <span class="p">(</span><span class="nb">yes-or-no-p</span> <span class="s">&quot;Join to the Dark Side?&quot;</span><span class="p">)</span>
+</span><span class='line'>      <span class="ss">:finally</span> <span class="p">(</span><span class="nb">format</span> <span class="no">t</span> <span class="s">&quot;We have cookies!&quot;</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Emacs: статический анализ Ruby-кода]]></title>
+    <link href="http://sviridov.github.io/blog/2014/02/20/emacs-ruby-static-code-analysis/"/>
+    <updated>2014-02-20T14:22:10+06:00</updated>
+    <id>http://sviridov.github.io/blog/2014/02/20/emacs-ruby-static-code-analysis</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/bbatsov/rubocop">Rubocop</a> &ndash; это полезный инструмент для любого Ruby-разработчика. <a href="https://github.com/bbatsov/rubocop">Rubocop</a> осуществляет статический анализ Ruby-кода основываясь на <a href="https://github.com/bbatsov/ruby-style-guide">Ruby Style Guide</a> и помогает сделать твой код (или код твоих коллег) чуточку читабельнее (а значит и лучше).</p>
+
+<p>Вот только есть один минус &ndash; ручной запуск <a href="https://github.com/bbatsov/rubocop">Rubocop</a> из терминала. Сам понимаешь, хочется интеграции этого чуда в среду разработки, так чтобы оно само. Ну что же, давай заинтегрируем.</p>
+
+<!-- more -->
+
+
+<h2>rvm.el</h2>
+
+<p>Ты ведь испольуешь <a href="http://rvm.io/">rvm</a> и <a href="http://bundler.io/">bundler</a>? Тогда мне не нужно объяснять тебе почему важно настроить взаимодействие <a href="http://www.gnu.org/software/emacs/">Emacs</a> и <a href="http://rvm.io/">rvm</a>.</p>
+
+<p>Для этого дела нам потребуется пакет <a href="https://github.com/senny/rvm.el">rvm.el</a>. Его установка и настройка тривиальна в случае если у тебя настроен <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Packages.html#Packages">ELPA</a> (<a href="https://github.com/sviridov/.emacs.d/blob/master/config/init-package.el">пример конфига</a>). Добавь следующие строки в свой конфигурационный файл:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='common-lisp'><span class='line'><span class="c1">;; Устанавливаем пакет rvm.el</span>
+</span><span class='line'><span class="p">(</span><span class="nv">require-package</span> <span class="ss">&#39;rvm</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">;; Выбираем соответсвующую версию ruby (и версии гемов)</span>
+</span><span class='line'><span class="c1">;; для каждого ruby-файла</span>
+</span><span class='line'><span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;ruby-mode-hook</span> <span class="nf">#&#39;</span><span class="nv">rvm-activate-corresponding-ruby</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Вот и все, <a href="https://github.com/senny/rvm.el">rvm.el</a> настроен.</p>
+
+<h2>Flycheck</h2>
+
+<p><a href="https://github.com/flycheck/flycheck">Flycheck</a> &ndash; это пакет, который является связуещей прослойкой между различными статическими анализаторами кода и <a href="http://www.gnu.org/software/emacs/">Emacs</a>. Штука крайне полезная, все детали по <a href="https://github.com/flycheck/flycheck">ссылке</a>. Итак, настройка:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='common-lisp'><span class='line'><span class="c1">;; Устанавливаем пакет Flycheck</span>
+</span><span class='line'><span class="p">(</span><span class="nv">require-package</span> <span class="ss">&#39;flycheck</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">;; Запускаем Flycheck глобально</span>
+</span><span class='line'><span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;after-init-hook</span> <span class="nf">#&#39;</span><span class="nv">global-flycheck-mode</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">;; или только для Ruby-mode</span>
+</span><span class='line'><span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;ruby-mode-hook</span> <span class="nf">#&#39;</span><span class="nv">flycheck-mode</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">;; Запускаем проверки при открытие файла и после его сохранения</span>
+</span><span class='line'><span class="p">(</span><span class="nv">setq-default</span> <span class="nv">flycheck-check-syntax-automatically</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">save</span> <span class="nv">mode-enabled</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Все, <a href="https://github.com/flycheck/flycheck">Flycheck</a> настроен. А знаешь что самое приятное? <a href="https://github.com/flycheck/flycheck">Flycheck</a> сам начнет использовать <a href="https://github.com/bbatsov/rubocop">Rubocop</a>! Добрая магия.</p>
+
+<p><img src="http://sviridov.github.io/images/posts/emacs-with-flycheck-and-rubocop-1.png"></p>
+
+<h2>P.S. rubocop-emacs</h2>
+
+<p>Но есть еще маленькая штука о которой стоит упоминуть. Пакет <a href="https://github.com/bbatsov/rubocop-emacs">rubocop-emacs</a> от <a href="https://github.com/bbatsov">автора</a> <a href="https://github.com/bbatsov/rubocop">Rubocop</a>. Это очень простая обертка над &ldquo;терминальным&rdquo; <a href="https://github.com/bbatsov/rubocop">Rubocop</a>. А полезна она будет для автоматической коррекции части некрасивостей в твоем коде. Итак:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='common-lisp'><span class='line'><span class="c1">;; Устанавливаем rubocop-emacs</span>
+</span><span class='line'><span class="p">(</span><span class="nv">require-package</span> <span class="ss">&#39;rubocop</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">;; Добавляем rubocop-emacs к Ruby-mode</span>
+</span><span class='line'><span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;ruby-mode-hook</span> <span class="nf">#&#39;</span><span class="nv">rubocop-mode</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">;; Перечитываем файл после его изменения вне Emacs</span>
+</span><span class='line'><span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;ruby-mode-hook</span> <span class="nf">#&#39;</span><span class="nv">auto-revert-mode</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Жми <strong><code>C-c C-r F</code></strong> и вуаля &ndash; код стал чуточку чище.</p>
+
+<p><img src="http://sviridov.github.io/images/posts/emacs-with-flycheck-and-rubocop-2.png"></p>
+]]></content>
+  </entry>
+  
+</feed>

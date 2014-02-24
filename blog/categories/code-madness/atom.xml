@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Code Madness | Свиридов Александр]]></title>
+  <link href="http://sviridov.github.io/blog/categories/code-madness/atom.xml" rel="self"/>
+  <link href="http://sviridov.github.io/"/>
+  <updated>2014-02-24T14:12:30+06:00</updated>
+  <id>http://sviridov.github.io/</id>
+  <author>
+    <name><![CDATA[Свиридов Александр]]></name>
+    <email><![CDATA[sviridov.vmi@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Code Madness: Join to the Dark Side?]]></title>
+    <link href="http://sviridov.github.io/blog/2014/02/21/code-madness-join-to-the-dark-side/"/>
+    <updated>2014-02-21T18:44:23+06:00</updated>
+    <id>http://sviridov.github.io/blog/2014/02/21/code-madness-join-to-the-dark-side</id>
+    <content type="html"><![CDATA[<p>Как заставить человека перейти на Темную сторону? Все просто:</p>
+
+<p>```common-lisp
+(loop :until (yes-or-no-p &ldquo;Join to the Dark Side?&rdquo;)</p>
+
+<pre><code>  :finally (format t "We have cookies!"))
+</code></pre>
+
+<p>```</p>
+]]></content>
+  </entry>
+  
+</feed>
