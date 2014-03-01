@@ -9,7 +9,7 @@
 	<meta name="author" content="Свиридов Александр">
 
 	
-	<meta name="description" content="22.02.2014 Emacs Emacs: динамическая подсветка Elisp-кода Как ты наверняка знаешь, языком программирования Emacs является Elisp. Его поддержка в &hellip;">
+	<meta name="description" content="01.03.2014 Emacs Emacs: EditorConfig Случайно наткнулся на эту полезную штуку. EditorConfig &ndash; это проект, с помощью которого можно задать &hellip;">
 	
 
   <!-- http://t.co/dKP3o1e -->
@@ -97,6 +97,56 @@
 			<div class="mid-col-container">
 				<div id="content" class="inner">
 <div itemscope itemtype="http://schema.org/Blog">
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-01T16:04:10+06:00" data-updated="true" itemprop="datePublished">01.03.2014</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/emacs/'>Emacs</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2014/03/01/emacs-editorconfig/" itemprop="url">Emacs: EditorConfig</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>Случайно наткнулся на эту полезную штуку. <a href="http://editorconfig.org/">EditorConfig</a> &ndash; это проект, с помощью которого можно задать основные правила оформления кода в проекте и синхронизовать их между программистами и их редакторами (и IDE). <a href="http://editorconfig.org/">EditorConfig</a> поддерживается <a href="http://editorconfig.org/#download">плагинами</a> для всех популярных редакторов. Установка <a href="http://editorconfig.org/">EditorConfig</a> проста:</p>
+
+<ul>
+<li>Устанавливаем <a href="https://github.com/editorconfig/editorconfig-core-c/blob/master/INSTALL.md">ядро EditorConfig</a></li>
+<li>Устанавливаем <a href="http://editorconfig.org/#download">плагин</a> для редактора. В случае <a href="http://www.gnu.org/software/emacs/">Emacs</a> все просто:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='common-lisp'><span class='line'><span class="c1">;; Устанавливаем пакет через ELPA</span>
+</span><span class='line'><span class="c1">;; Пакет доступен для установки с Marmalade</span>
+</span><span class='line'><span class="p">(</span><span class="nv">require-package</span> <span class="ss">&#39;editorconfig</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+		
+		
+	</div>
+
+</article>
 
 
     <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
