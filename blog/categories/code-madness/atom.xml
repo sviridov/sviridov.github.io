@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Code Madness | Свиридов Александр]]></title>
   <link href="http://sviridov.github.io/blog/categories/code-madness/atom.xml" rel="self"/>
   <link href="http://sviridov.github.io/"/>
-  <updated>2014-03-01T16:30:04+06:00</updated>
+  <updated>2014-07-13T21:09:47+06:00</updated>
   <id>http://sviridov.github.io/</id>
   <author>
     <name><![CDATA[Свиридов Александр]]></name>
@@ -20,13 +20,14 @@
     <id>http://sviridov.github.io/blog/2014/02/21/code-madness-join-to-the-dark-side</id>
     <content type="html"><![CDATA[<p>Как заставить человека перейти на Темную сторону? Все просто:</p>
 
-<p>```common-lisp
-(loop :until (yes-or-no-p &ldquo;Join to the Dark Side?&rdquo;)</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='common-lisp'><span class='line'><span class="p">(</span><span class="nb">loop</span> <span class="ss">:until</span> <span class="p">(</span><span class="nb">yes-or-no-p</span> <span class="s">&quot;Join to the Dark Side?&quot;</span><span class="p">)</span>
+</span><span class='line'>      <span class="ss">:finally</span> <span class="p">(</span><span class="nb">format</span> <span class="no">t</span> <span class="s">&quot;We have cookies!&quot;</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<pre><code>  :finally (format t "We have cookies!"))
-</code></pre>
 
-<p>```</p>
+
 ]]></content>
   </entry>
   

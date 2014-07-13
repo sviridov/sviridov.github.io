@@ -4,7 +4,7 @@
   <title><![CDATA[Свиридов Александр]]></title>
   <link href="http://sviridov.github.io/atom.xml" rel="self"/>
   <link href="http://sviridov.github.io/"/>
-  <updated>2014-03-01T16:30:04+06:00</updated>
+  <updated>2014-07-13T21:09:47+06:00</updated>
   <id>http://sviridov.github.io/</id>
   <author>
     <name><![CDATA[Свиридов Александр]]></name>
@@ -26,13 +26,17 @@
 </ul>
 
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
+<span class='line-number'>4</span>
 </pre></td><td class='code'><pre><code class='common-lisp'><span class='line'><span class="c1">;; Устанавливаем пакет через ELPA</span>
 </span><span class='line'><span class="c1">;; Пакет доступен для установки с Marmalade</span>
+</span><span class='line'>
 </span><span class='line'><span class="p">(</span><span class="nv">require-package</span> <span class="ss">&#39;editorconfig</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
+
+
 
 ]]></content>
   </entry>
@@ -66,7 +70,7 @@
 
 <p>Пример подсветки имен макросов:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -115,7 +119,7 @@
 
 <p>Отлично, теперь обобщим этот метод для функций и глобальных переменных, плюс добавим подсветку в <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Lisp-Interaction.html">IELM</a>:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -199,11 +203,13 @@
     <id>http://sviridov.github.io/blog/2014/02/21/code-madness-join-to-the-dark-side</id>
     <content type="html"><![CDATA[<p>Как заставить человека перейти на Темную сторону? Все просто:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='common-lisp'><span class='line'><span class="p">(</span><span class="nb">loop</span> <span class="ss">:until</span> <span class="p">(</span><span class="nb">yes-or-no-p</span> <span class="s">&quot;Join to the Dark Side?&quot;</span><span class="p">)</span>
 </span><span class='line'>      <span class="ss">:finally</span> <span class="p">(</span><span class="nb">format</span> <span class="no">t</span> <span class="s">&quot;We have cookies!&quot;</span><span class="p">))</span>
 </span></code></pre></td></tr></table></div></figure>
+
+
 
 ]]></content>
   </entry>
@@ -226,7 +232,7 @@
 
 <p>Для этого дела нам потребуется пакет <a href="https://github.com/senny/rvm.el">rvm.el</a>. Его установка и настройка тривиальна в случае если у тебя настроен <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Packages.html#Packages">ELPA</a> (<a href="https://github.com/sviridov/.emacs.d/blob/master/config/init-package.el">пример конфига</a>). Добавь следующие строки в свой конфигурационный файл:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -247,7 +253,7 @@
 
 <p><a href="https://github.com/flycheck/flycheck">Flycheck</a> &ndash; это пакет, который является связуещей прослойкой между различными статическими анализаторами кода и <a href="http://www.gnu.org/software/emacs/">Emacs</a>. Штука крайне полезная, все детали по <a href="https://github.com/flycheck/flycheck">ссылке</a>. Итак, настройка:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -280,7 +286,7 @@
 
 <p>Но есть еще маленькая штука о которой стоит упоминуть. Пакет <a href="https://github.com/bbatsov/rubocop-emacs">rubocop-emacs</a> от <a href="https://github.com/bbatsov">автора</a> <a href="https://github.com/bbatsov/rubocop">Rubocop</a>. Это очень простая обертка над &ldquo;терминальным&rdquo; <a href="https://github.com/bbatsov/rubocop">Rubocop</a>. А полезна она будет для автоматической коррекции части некрасивостей в твоем коде. Итак:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>

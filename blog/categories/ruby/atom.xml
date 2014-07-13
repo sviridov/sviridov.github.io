@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Свиридов Александр]]></title>
   <link href="http://sviridov.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://sviridov.github.io/"/>
-  <updated>2014-03-01T16:30:04+06:00</updated>
+  <updated>2014-07-13T21:09:47+06:00</updated>
   <id>http://sviridov.github.io/</id>
   <author>
     <name><![CDATA[Свиридов Александр]]></name>
@@ -31,14 +31,20 @@
 
 <p>Для этого дела нам потребуется пакет <a href="https://github.com/senny/rvm.el">rvm.el</a>. Его установка и настройка тривиальна в случае если у тебя настроен <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Packages.html#Packages">ELPA</a> (<a href="https://github.com/sviridov/.emacs.d/blob/master/config/init-package.el">пример конфига</a>). Добавь следующие строки в свой конфигурационный файл:</p>
 
-<p>```common-lisp
-;; Устанавливаем пакет rvm.el
-(require-package &lsquo;rvm)</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='common-lisp'><span class='line'><span class="c1">;; Устанавливаем пакет rvm.el</span>
+</span><span class='line'><span class="p">(</span><span class="nv">require-package</span> <span class="ss">&#39;rvm</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">;; Выбираем соответсвующую версию ruby (и версии гемов)</span>
+</span><span class='line'><span class="c1">;; для каждого ruby-файла</span>
+</span><span class='line'><span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;ruby-mode-hook</span> <span class="nf">#&#39;</span><span class="nv">rvm-activate-corresponding-ruby</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>;; Выбираем соответсвующую версию ruby (и версии гемов)
-;; для каждого ruby-файла
-(add-hook &lsquo;ruby-mode-hook #'rvm-activate-corresponding-ruby)
-```</p>
 
 <p>Вот и все, <a href="https://github.com/senny/rvm.el">rvm.el</a> настроен.</p>
 
@@ -46,42 +52,61 @@
 
 <p><a href="https://github.com/flycheck/flycheck">Flycheck</a> &ndash; это пакет, который является связуещей прослойкой между различными статическими анализаторами кода и <a href="http://www.gnu.org/software/emacs/">Emacs</a>. Штука крайне полезная, все детали по <a href="https://github.com/flycheck/flycheck">ссылке</a>. Итак, настройка:</p>
 
-<p>```common-lisp
-;; Устанавливаем пакет Flycheck
-(require-package &lsquo;flycheck)</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='common-lisp'><span class='line'><span class="c1">;; Устанавливаем пакет Flycheck</span>
+</span><span class='line'><span class="p">(</span><span class="nv">require-package</span> <span class="ss">&#39;flycheck</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">;; Запускаем Flycheck глобально</span>
+</span><span class='line'><span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;after-init-hook</span> <span class="nf">#&#39;</span><span class="nv">global-flycheck-mode</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">;; или только для Ruby-mode</span>
+</span><span class='line'><span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;ruby-mode-hook</span> <span class="nf">#&#39;</span><span class="nv">flycheck-mode</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">;; Запускаем проверки при открытие файла и после его сохранения</span>
+</span><span class='line'><span class="p">(</span><span class="nv">setq-default</span> <span class="nv">flycheck-check-syntax-automatically</span> <span class="o">&#39;</span><span class="p">(</span><span class="nv">save</span> <span class="nv">mode-enabled</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>;; Запускаем Flycheck глобально
-(add-hook &lsquo;after-init-hook #'global-flycheck-mode)</p>
-
-<p>;; или только для Ruby-mode
-(add-hook &lsquo;ruby-mode-hook #'flycheck-mode)</p>
-
-<p>;; Запускаем проверки при открытие файла и после его сохранения
-(setq-default flycheck-check-syntax-automatically &lsquo;(save mode-enabled))
-```</p>
 
 <p>Все, <a href="https://github.com/flycheck/flycheck">Flycheck</a> настроен. А знаешь что самое приятное? <a href="https://github.com/flycheck/flycheck">Flycheck</a> сам начнет использовать <a href="https://github.com/bbatsov/rubocop">Rubocop</a>! Добрая магия.</p>
 
-<p><img src="/images/posts/emacs-with-flycheck-and-rubocop-1.png"></p>
+<p><img src="http://sviridov.github.io/images/posts/emacs-with-flycheck-and-rubocop-1.png"></p>
 
 <h2>P.S. rubocop-emacs</h2>
 
 <p>Но есть еще маленькая штука о которой стоит упоминуть. Пакет <a href="https://github.com/bbatsov/rubocop-emacs">rubocop-emacs</a> от <a href="https://github.com/bbatsov">автора</a> <a href="https://github.com/bbatsov/rubocop">Rubocop</a>. Это очень простая обертка над &ldquo;терминальным&rdquo; <a href="https://github.com/bbatsov/rubocop">Rubocop</a>. А полезна она будет для автоматической коррекции части некрасивостей в твоем коде. Итак:</p>
 
-<p>```common-lisp
-;; Устанавливаем rubocop-emacs
-(require-package &lsquo;rubocop)</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='common-lisp'><span class='line'><span class="c1">;; Устанавливаем rubocop-emacs</span>
+</span><span class='line'><span class="p">(</span><span class="nv">require-package</span> <span class="ss">&#39;rubocop</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">;; Добавляем rubocop-emacs к Ruby-mode</span>
+</span><span class='line'><span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;ruby-mode-hook</span> <span class="nf">#&#39;</span><span class="nv">rubocop-mode</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">;; Перечитываем файл после его изменения вне Emacs</span>
+</span><span class='line'><span class="p">(</span><span class="nv">add-hook</span> <span class="ss">&#39;ruby-mode-hook</span> <span class="nf">#&#39;</span><span class="nv">auto-revert-mode</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>;; Добавляем rubocop-emacs к Ruby-mode
-(add-hook &lsquo;ruby-mode-hook #'rubocop-mode)</p>
-
-<p>;; Перечитываем файл после его изменения вне Emacs
-(add-hook &lsquo;ruby-mode-hook #'auto-revert-mode)
-```</p>
 
 <p>Жми <strong><code>C-c C-r F</code></strong> и вуаля &ndash; код стал чуточку чище.</p>
 
-<p><img src="/images/posts/emacs-with-flycheck-and-rubocop-2.png"></p>
+<p><img src="http://sviridov.github.io/images/posts/emacs-with-flycheck-and-rubocop-2.png"></p>
 ]]></content>
   </entry>
   
