@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Code Madness | Свиридов Александр]]></title>
-  <link href="http://sviridov.github.io/blog/categories/code-madness/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Perl | Свиридов Александр]]></title>
+  <link href="http://sviridov.github.io/blog/categories/perl/atom.xml" rel="self"/>
   <link href="http://sviridov.github.io/"/>
   <updated>2014-07-15T12:50:07+06:00</updated>
   <id>http://sviridov.github.io/</id>
@@ -32,26 +32,6 @@
 </span><span class='line'>
 </span><span class='line'><span class="nn">IO::Socket::</span><span class="n">INET</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span><span class="n">PeerAddr</span> <span class="o">=&gt;</span> <span class="s">&#39;www.microsoft.com&#39;</span><span class="p">,</span> <span class="n">PeerPort</span> <span class="o">=&gt;</span> <span class="mi">139</span><span class="p">,</span> <span class="n">Proto</span> <span class="o">=&gt;</span> <span class="s">&#39;tcp&#39;</span><span class="p">)</span>
 </span><span class='line'>                <span class="o">-&gt;</span><span class="nb">send</span><span class="p">(</span><span class="s">&#39;Bye&#39;</span><span class="p">,</span> <span class="n">MSG_OOB</span><span class="p">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Code Madness: Join to the Dark Side?]]></title>
-    <link href="http://sviridov.github.io/blog/2014/02/21/code-madness-join-to-the-dark-side/"/>
-    <updated>2014-02-21T18:44:23+06:00</updated>
-    <id>http://sviridov.github.io/blog/2014/02/21/code-madness-join-to-the-dark-side</id>
-    <content type="html"><![CDATA[<p>Под тегом <a href="http://sviridov.github.io/blog/categories/code-madness/">Code Madness</a> буду публиковать различные забавные кусочки кода. С их помощью я постараюсь показать вам интересные маленькие особенности того или иного языка программирования. Итак&hellip;</p>
-
-<p>Как заставить человека перейти на Темную сторону? Все просто:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='common-lisp'><span class='line'><span class="p">(</span><span class="nb">loop</span> <span class="ss">:until</span> <span class="p">(</span><span class="nb">yes-or-no-p</span> <span class="s">&quot;Join to the Dark Side?&quot;</span><span class="p">)</span>
-</span><span class='line'>      <span class="ss">:finally</span> <span class="p">(</span><span class="nb">format</span> <span class="no">t</span> <span class="s">&quot;We have cookies!&quot;</span><span class="p">))</span>
 </span></code></pre></td></tr></table></div></figure>
 
 

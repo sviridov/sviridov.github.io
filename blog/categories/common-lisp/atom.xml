@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Common Lisp | Свиридов Александр]]></title>
   <link href="http://sviridov.github.io/blog/categories/common-lisp/atom.xml" rel="self"/>
   <link href="http://sviridov.github.io/"/>
-  <updated>2014-07-13T21:09:47+06:00</updated>
+  <updated>2014-07-15T12:50:07+06:00</updated>
   <id>http://sviridov.github.io/</id>
   <author>
     <name><![CDATA[Свиридов Александр]]></name>
@@ -18,7 +18,9 @@
     <link href="http://sviridov.github.io/blog/2014/02/21/code-madness-join-to-the-dark-side/"/>
     <updated>2014-02-21T18:44:23+06:00</updated>
     <id>http://sviridov.github.io/blog/2014/02/21/code-madness-join-to-the-dark-side</id>
-    <content type="html"><![CDATA[<p>Как заставить человека перейти на Темную сторону? Все просто:</p>
+    <content type="html"><![CDATA[<p>Под тегом <a href="http://sviridov.github.io/blog/categories/code-madness/">Code Madness</a> буду публиковать различные забавные кусочки кода. С их помощью я постараюсь показать вам интересные маленькие особенности того или иного языка программирования. Итак&hellip;</p>
+
+<p>Как заставить человека перейти на Темную сторону? Все просто:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>

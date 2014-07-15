@@ -9,8 +9,9 @@
 	<meta name="author" content="Свиридов Александр">
 
 	
-	<meta name="description" content="01.03.2014 Emacs Emacs: EditorConfig Случайно наткнулся на эту полезную штуку. EditorConfig &ndash; это проект, с помощью которого можно задать &hellip;">
-	
+	<meta name="description" content="Интеграция EditorConfig в Emacs">
+        
+        <meta name="keywords" content="Alexander Sviridov, Александр Свиридов, Emacs, EditorConfig">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -120,22 +121,16 @@
 		
 	</div>
 	<h1 class="title" itemprop="name">Emacs: EditorConfig</h1>
-	<div class="entry-content" itemprop="articleBody"><p>Случайно наткнулся на эту полезную штуку. <a href="http://editorconfig.org/">EditorConfig</a> &ndash; это проект, с помощью которого можно задать основные правила оформления кода в проекте и синхронизовать их между программистами и их редакторами (и IDE). <a href="http://editorconfig.org/">EditorConfig</a> поддерживается <a href="http://editorconfig.org/#download">плагинами</a> для всех популярных редакторов. Установка <a href="http://editorconfig.org/">EditorConfig</a> проста:</p>
+	<div class="entry-content" itemprop="articleBody"><p>Случайно наткнулся на эту полезную штуку. <a href="http://editorconfig.org/">EditorConfig</a> &ndash; это инструмент, с помощью которого можно задать основные правила оформления кода в проекте и синхронизировать их между программистами и их редакторами (и IDE). <a href="http://editorconfig.org/">EditorConfig</a> поддерживается <a href="http://editorconfig.org/#download">плагинами</a> для всех популярных редакторов. Установка <a href="http://editorconfig.org/">EditorConfig</a> проста:</p>
 
 <ul>
 <li>Устанавливаем <a href="https://github.com/editorconfig/editorconfig-core-c/blob/master/INSTALL.md">ядро EditorConfig</a></li>
-<li>Устанавливаем <a href="http://editorconfig.org/#download">плагин</a> для редактора. В случае <a href="http://www.gnu.org/software/emacs/">Emacs</a> все просто:</li>
+<li>Устанавливаем <a href="http://editorconfig.org/#download">плагин</a> для редактора. В случае <a href="http://www.gnu.org/software/emacs/">Emacs</a> пакет доступен для загрузки с <a href="http://marmalade-repo.org/packages/editorconfig">Marmalade</a> и установка очень проста:</li>
 </ul>
 
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='common-lisp'><span class='line'><span class="c1">;; Устанавливаем пакет через ELPA</span>
-</span><span class='line'><span class="c1">;; Пакет доступен для установки с Marmalade</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">(</span><span class="nv">require-package</span> <span class="ss">&#39;editorconfig</span><span class="p">)</span>
+</pre></td><td class='code'><pre><code class='common-lisp'><span class='line'><span class="p">(</span><span class="nv">require-package</span> <span class="ss">&#39;editorconfig</span><span class="p">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -157,6 +152,8 @@
       </td>
 
       <td width="33%" style="text-align: right">
+        
+        <a href="/blog/2014/07/14/code-madness-winnuke-it/" title="Code Madness: WinNuke It!">Code Madness: WinNuke It! &raquo;</a>
         
       </td>
     </tr>
