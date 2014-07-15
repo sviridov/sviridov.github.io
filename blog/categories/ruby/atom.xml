@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ruby | Свиридов Александр]]></title>
   <link href="http://sviridov.github.io/blog/categories/ruby/atom.xml" rel="self"/>
   <link href="http://sviridov.github.io/"/>
-  <updated>2014-07-15T12:50:07+06:00</updated>
+  <updated>2014-07-15T21:40:44+06:00</updated>
   <id>http://sviridov.github.io/</id>
   <author>
     <name><![CDATA[Свиридов Александр]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Emacs: статический анализ Ruby-кода]]></title>
-    <link href="http://sviridov.github.io/blog/2014/02/20/emacs-ruby-static-code-analysis/"/>
-    <updated>2014-02-20T14:22:10+06:00</updated>
-    <id>http://sviridov.github.io/blog/2014/02/20/emacs-ruby-static-code-analysis</id>
+    <link href="http://sviridov.github.io/blog/2014/06/28/emacs-ruby-static-code-analysis/"/>
+    <updated>2014-06-28T14:22:10+06:00</updated>
+    <id>http://sviridov.github.io/blog/2014/06/28/emacs-ruby-static-code-analysis</id>
     <content type="html"><![CDATA[<p><a href="https://github.com/bbatsov/rubocop">Rubocop</a> &ndash; это полезный инструмент для любого <a href="https://www.ruby-lang.org/ru/">Ruby</a>-разработчика. <a href="https://github.com/bbatsov/rubocop">Rubocop</a> осуществляет статический анализ <a href="https://www.ruby-lang.org/ru/">Ruby</a>-кода основываясь на <a href="https://github.com/bbatsov/ruby-style-guide">Ruby Style Guide</a> и помогает сделать ваш код чуточку читабельнее (а значит и лучше).</p>
 
 <p>Так как <a href="https://github.com/bbatsov/rubocop">Rubocop</a> является утилитой командной строки, его ручной запуск является не самым удобным в работе решением. Однако, нет ничего сложного в том, чтобы настроить интеграцию <a href="https://github.com/bbatsov/rubocop">Rubocop</a> и <a href="http://www.gnu.org/software/emacs/">Emacs</a>, получив при этом:</p>
@@ -36,7 +36,7 @@
 
 <h2>rvm.el</h2>
 
-<p>Вы ведь испольуете <a href="http://rvm.io/">RVM</a> и <a href="http://bundler.io/">Bundler</a>? Тогда мне не нужно объяснять почему очень важно настроить взаимодействие <a href="http://www.gnu.org/software/emacs/">Emacs</a> и <a href="http://rvm.io/">RVM</a>.</p>
+<p>Вы ведь используете <a href="http://rvm.io/">RVM</a> и <a href="http://bundler.io/">Bundler</a>? Тогда мне не нужно объяснять почему очень важно настроить взаимодействие <a href="http://www.gnu.org/software/emacs/">Emacs</a> и <a href="http://rvm.io/">RVM</a>.</p>
 
 <p>Для решения этой задачи нам потребуется пакет <a href="https://github.com/senny/rvm.el">rvm.el</a>. Его установка и настройка тривиальна в случае если у вас настроен <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Packages.html#Packages">package.el</a> (<a href="https://github.com/sviridov/.emacs.d/blob/master/config/init-package.el">пример</a>):</p>
 
@@ -59,7 +59,7 @@
 
 <h2>Flycheck</h2>
 
-<p><a href="https://github.com/flycheck/flycheck">Flycheck</a> &ndash; это пакет, который является связуещей прослойкой между различными статическими анализаторами кода и <a href="http://www.gnu.org/software/emacs/">Emacs</a>. Крайне полезный инструмент. Итак, его настройка:</p>
+<p><a href="https://github.com/flycheck/flycheck">Flycheck</a> &ndash; это пакет, который является связующей прослойкой между различными статическими анализаторами кода и <a href="http://www.gnu.org/software/emacs/">Emacs</a>. Крайне полезный инструмент. Итак, его настройка:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -94,7 +94,7 @@
 
 <h2>P.S. rubocop-emacs</h2>
 
-<p>Есть еще одна маленькая вещь о которой стоит упоминуть. Пакет <a href="https://github.com/bbatsov/rubocop-emacs">rubocop-emacs</a> от <a href="https://github.com/bbatsov">автора</a> <a href="https://github.com/bbatsov/rubocop">Rubocop</a>. По сравнению с <a href="https://github.com/flycheck/flycheck">Flycheck</a> этот пакет далеко не так удобен, однако в нем есть одна интересная возможность: автоматическая коррекция части ошибок и предупреждений в вашем коде. Итак:</p>
+<p>Есть еще одна маленькая вещь о которой стоит упомянуть. Пакет <a href="https://github.com/bbatsov/rubocop-emacs">rubocop-emacs</a> от <a href="https://github.com/bbatsov">автора</a> <a href="https://github.com/bbatsov/rubocop">Rubocop</a>. По сравнению с <a href="https://github.com/flycheck/flycheck">Flycheck</a> этот пакет далеко не так удобен, однако в нем есть одна интересная возможность: автоматическая коррекция части ошибок и предупреждений в вашем коде. Итак:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>

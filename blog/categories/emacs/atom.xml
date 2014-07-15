@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Emacs | Свиридов Александр]]></title>
   <link href="http://sviridov.github.io/blog/categories/emacs/atom.xml" rel="self"/>
   <link href="http://sviridov.github.io/"/>
-  <updated>2014-07-15T12:50:07+06:00</updated>
+  <updated>2014-07-15T21:40:44+06:00</updated>
   <id>http://sviridov.github.io/</id>
   <author>
     <name><![CDATA[Свиридов Александр]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Emacs: EditorConfig]]></title>
-    <link href="http://sviridov.github.io/blog/2014/03/01/emacs-editorconfig/"/>
-    <updated>2014-03-01T16:04:10+06:00</updated>
-    <id>http://sviridov.github.io/blog/2014/03/01/emacs-editorconfig</id>
+    <link href="http://sviridov.github.io/blog/2014/07/03/emacs-editorconfig/"/>
+    <updated>2014-07-03T16:04:10+06:00</updated>
+    <id>http://sviridov.github.io/blog/2014/07/03/emacs-editorconfig</id>
     <content type="html"><![CDATA[<p>Случайно наткнулся на эту полезную штуку. <a href="http://editorconfig.org/">EditorConfig</a> &ndash; это инструмент, с помощью которого можно задать основные правила оформления кода в проекте и синхронизировать их между программистами и их редакторами (и IDE). <a href="http://editorconfig.org/">EditorConfig</a> поддерживается <a href="http://editorconfig.org/#download">плагинами</a> для всех популярных редакторов. Установка <a href="http://editorconfig.org/">EditorConfig</a> проста:</p>
 
 <ul>
@@ -27,7 +27,7 @@
 
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='common-lisp'><span class='line'><span class="p">(</span><span class="nv">require-package</span> <span class="ss">&#39;editorconfig</span><span class="p">)</span>
+</pre></td><td class='code'><pre><code class='common-lisp'><span class='line'><span class="nv">M-x</span> <span class="nv">package-install</span> <span class="nv">[RET]</span> <span class="nv">editorconfig</span> <span class="nv">[RET]</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -37,9 +37,9 @@
   
   <entry>
     <title type="html"><![CDATA[Emacs: динамическая подсветка Elisp-кода]]></title>
-    <link href="http://sviridov.github.io/blog/2014/02/22/emacs-dynamic-elisp-highlighting/"/>
-    <updated>2014-02-22T16:57:57+06:00</updated>
-    <id>http://sviridov.github.io/blog/2014/02/22/emacs-dynamic-elisp-highlighting</id>
+    <link href="http://sviridov.github.io/blog/2014/07/01/emacs-dynamic-elisp-highlighting/"/>
+    <updated>2014-07-01T16:57:57+06:00</updated>
+    <id>http://sviridov.github.io/blog/2014/07/01/emacs-dynamic-elisp-highlighting</id>
     <content type="html"><![CDATA[<p>Как вы наверняка знаете, языком программирования <a href="http://www.gnu.org/software/emacs/">Emacs</a> является <a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/index.html#Top">Elisp</a>. Его поддержка в стандартной поставке <a href="http://www.gnu.org/software/emacs/">Emacs</a> достаточно хороша. Но вот чего мне действительно не хватает &ndash; это качественной подсветки символов (идентификаторов), в том числе определяемых мной. Ну что же, давайте ее добавим.</p>
 
 <!-- more -->
@@ -190,9 +190,9 @@
   
   <entry>
     <title type="html"><![CDATA[Emacs: статический анализ Ruby-кода]]></title>
-    <link href="http://sviridov.github.io/blog/2014/02/20/emacs-ruby-static-code-analysis/"/>
-    <updated>2014-02-20T14:22:10+06:00</updated>
-    <id>http://sviridov.github.io/blog/2014/02/20/emacs-ruby-static-code-analysis</id>
+    <link href="http://sviridov.github.io/blog/2014/06/28/emacs-ruby-static-code-analysis/"/>
+    <updated>2014-06-28T14:22:10+06:00</updated>
+    <id>http://sviridov.github.io/blog/2014/06/28/emacs-ruby-static-code-analysis</id>
     <content type="html"><![CDATA[<p><a href="https://github.com/bbatsov/rubocop">Rubocop</a> &ndash; это полезный инструмент для любого <a href="https://www.ruby-lang.org/ru/">Ruby</a>-разработчика. <a href="https://github.com/bbatsov/rubocop">Rubocop</a> осуществляет статический анализ <a href="https://www.ruby-lang.org/ru/">Ruby</a>-кода основываясь на <a href="https://github.com/bbatsov/ruby-style-guide">Ruby Style Guide</a> и помогает сделать ваш код чуточку читабельнее (а значит и лучше).</p>
 
 <p>Так как <a href="https://github.com/bbatsov/rubocop">Rubocop</a> является утилитой командной строки, его ручной запуск является не самым удобным в работе решением. Однако, нет ничего сложного в том, чтобы настроить интеграцию <a href="https://github.com/bbatsov/rubocop">Rubocop</a> и <a href="http://www.gnu.org/software/emacs/">Emacs</a>, получив при этом:</p>
@@ -211,7 +211,7 @@
 
 <h2>rvm.el</h2>
 
-<p>Вы ведь испольуете <a href="http://rvm.io/">RVM</a> и <a href="http://bundler.io/">Bundler</a>? Тогда мне не нужно объяснять почему очень важно настроить взаимодействие <a href="http://www.gnu.org/software/emacs/">Emacs</a> и <a href="http://rvm.io/">RVM</a>.</p>
+<p>Вы ведь используете <a href="http://rvm.io/">RVM</a> и <a href="http://bundler.io/">Bundler</a>? Тогда мне не нужно объяснять почему очень важно настроить взаимодействие <a href="http://www.gnu.org/software/emacs/">Emacs</a> и <a href="http://rvm.io/">RVM</a>.</p>
 
 <p>Для решения этой задачи нам потребуется пакет <a href="https://github.com/senny/rvm.el">rvm.el</a>. Его установка и настройка тривиальна в случае если у вас настроен <a href="https://www.gnu.org/software/emacs/manual/html_node/emacs/Packages.html#Packages">package.el</a> (<a href="https://github.com/sviridov/.emacs.d/blob/master/config/init-package.el">пример</a>):</p>
 
@@ -234,7 +234,7 @@
 
 <h2>Flycheck</h2>
 
-<p><a href="https://github.com/flycheck/flycheck">Flycheck</a> &ndash; это пакет, который является связуещей прослойкой между различными статическими анализаторами кода и <a href="http://www.gnu.org/software/emacs/">Emacs</a>. Крайне полезный инструмент. Итак, его настройка:</p>
+<p><a href="https://github.com/flycheck/flycheck">Flycheck</a> &ndash; это пакет, который является связующей прослойкой между различными статическими анализаторами кода и <a href="http://www.gnu.org/software/emacs/">Emacs</a>. Крайне полезный инструмент. Итак, его настройка:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -269,7 +269,7 @@
 
 <h2>P.S. rubocop-emacs</h2>
 
-<p>Есть еще одна маленькая вещь о которой стоит упоминуть. Пакет <a href="https://github.com/bbatsov/rubocop-emacs">rubocop-emacs</a> от <a href="https://github.com/bbatsov">автора</a> <a href="https://github.com/bbatsov/rubocop">Rubocop</a>. По сравнению с <a href="https://github.com/flycheck/flycheck">Flycheck</a> этот пакет далеко не так удобен, однако в нем есть одна интересная возможность: автоматическая коррекция части ошибок и предупреждений в вашем коде. Итак:</p>
+<p>Есть еще одна маленькая вещь о которой стоит упомянуть. Пакет <a href="https://github.com/bbatsov/rubocop-emacs">rubocop-emacs</a> от <a href="https://github.com/bbatsov">автора</a> <a href="https://github.com/bbatsov/rubocop">Rubocop</a>. По сравнению с <a href="https://github.com/flycheck/flycheck">Flycheck</a> этот пакет далеко не так удобен, однако в нем есть одна интересная возможность: автоматическая коррекция части ошибок и предупреждений в вашем коде. Итак:</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
