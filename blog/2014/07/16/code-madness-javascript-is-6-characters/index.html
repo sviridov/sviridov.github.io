@@ -5,13 +5,13 @@
 
 <head>
 	<meta charset="utf-8">
-	<title>Code Madness: WinNuke It! - Свиридов Александр</title>
+	<title>Code Madness: JavaScript - это ()+[]! - Свиридов Александр</title>
 	<meta name="author" content="Свиридов Александр">
 
 	
-	<meta name="description" content="Реализация WinNuke на Perl">
+	<meta name="description" content="Забавная особенность JavaScript">
         
-        <meta name="keywords" content="Alexander Sviridov, Александр Свиридов, Code Madness, Perl, WinNuke">
+        <meta name="keywords" content="Alexander Sviridov, Александр Свиридов, Code Madness, JavaScript, JSFuck">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -20,7 +20,7 @@
 
 	<link href="/atom.xml" rel="alternate" title="Свиридов Александр" type="application/atom+xml">
 	
-	<link rel="canonical" href="http://sviridov.github.io/blog/2014/07/14/code-madness-winnuke-it/">
+	<link rel="canonical" href="http://sviridov.github.io/blog/2014/07/16/code-madness-javascript-is-6-characters/">
 	<link href="/favicon.png" rel="shortcut icon">
 	<link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
 	<link href="/stylesheets/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
@@ -110,35 +110,25 @@
   
 
 
-<time datetime="2014-07-14T14:50:45+06:00" data-updated="true" itemprop="datePublished">14.07.2014</time></div>
+<time datetime="2014-07-16T16:00:00+06:00" data-updated="true" itemprop="datePublished">16.07.2014</time></div>
 		<div class="tags">
 
 
-	<a class='category' href='/blog/categories/code-madness/'>Code Madness</a>, <a class='category' href='/blog/categories/perl/'>Perl</a>
+	<a class='category' href='/blog/categories/code-madness/'>Code Madness</a>, <a class='category' href='/blog/categories/javascript/'>JavaScript</a>
 
 
 </div>
 		
 	</div>
-	<h1 class="title" itemprop="name">Code Madness: WinNuke It!</h1>
-	<div class="entry-content" itemprop="articleBody"><p>Тяжело ли сейчас реализовать <a href="http://en.wikipedia.org/wiki/WinNuke">WinNuke</a> атаку, которая в 1997 положила <a href="http://www.microsoft.com">www.microsoft.com</a> на несколько дней? Вовсе нет:</p>
+	<h1 class="title" itemprop="name">Code Madness: JavaScript - это ()+[]!</h1>
+	<div class="entry-content" itemprop="articleBody"><p>А знали ли вы, что:</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='perl'><span class='line'><span class="c1">#!/usr/bin/perl</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">use</span> <span class="nn">IO::</span><span class="n">Socket</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nn">IO::Socket::</span><span class="n">INET</span><span class="o">-&gt;</span><span class="k">new</span><span class="p">(</span><span class="n">PeerAddr</span> <span class="o">=&gt;</span> <span class="s">&#39;www.microsoft.com&#39;</span><span class="p">,</span> <span class="n">PeerPort</span> <span class="o">=&gt;</span> <span class="mi">139</span><span class="p">,</span> <span class="n">Proto</span> <span class="o">=&gt;</span> <span class="s">&#39;tcp&#39;</span><span class="p">)</span>
-</span><span class='line'>                <span class="o">-&gt;</span><span class="nb">send</span><span class="p">(</span><span class="s">&#39;Bye&#39;</span><span class="p">,</span> <span class="n">MSG_OOB</span><span class="p">);</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="s1">&#39;alert&#39;</span> <span class="o">===</span> <span class="p">(</span><span class="o">!</span><span class="p">[]</span><span class="o">+</span><span class="p">[])[</span><span class="o">+!+</span><span class="p">[]]</span><span class="o">+</span><span class="p">(</span><span class="o">!</span><span class="p">[]</span><span class="o">+</span><span class="p">[])[</span><span class="o">!+</span><span class="p">[]</span><span class="o">+!+</span><span class="p">[]]</span><span class="o">+</span><span class="p">(</span><span class="o">!!</span><span class="p">[]</span><span class="o">+</span><span class="p">[])[</span><span class="o">!+</span><span class="p">[]</span><span class="o">+!+</span><span class="p">[]</span><span class="o">+!+</span><span class="p">[]]</span><span class="o">+</span><span class="p">(</span><span class="o">!!</span><span class="p">[]</span><span class="o">+</span><span class="p">[])[</span><span class="o">+!+</span><span class="p">[]]</span><span class="o">+</span><span class="p">(</span><span class="o">!!</span><span class="p">[]</span><span class="o">+</span><span class="p">[])[</span><span class="o">+</span><span class="p">[]]</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-
+<p>Как это работает? Добро пожаловать на <a href="http://www.jsfuck.com/">JSFuck</a>!</p>
 </div>
 
 </article>
@@ -147,7 +137,7 @@
     <tr>
       <td width="33%">
         
-        <a href="/blog/2014/07/03/emacs-editorconfig/" title="Emacs: EditorConfig">&laquo; Emacs: EditorConfig</a>
+        <a href="/blog/2014/07/14/code-madness-winnuke-it/" title="Code Madness: WinNuke It!">&laquo; Code Madness: WinNuke It!</a>
         
       </td>
 
@@ -156,8 +146,6 @@
       </td>
 
       <td width="33%" style="text-align: right">
-        
-        <a href="/blog/2014/07/16/code-madness-javascript-is-6-characters/" title="Code Madness: JavaScript - это ()+[]!">Code Madness: JavaScript - это ()+[]! &raquo;</a>
         
       </td>
     </tr>
@@ -187,8 +175,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://sviridov.github.io/blog/2014/07/14/code-madness-winnuke-it/';
-        var disqus_url = 'http://sviridov.github.io/blog/2014/07/14/code-madness-winnuke-it/';
+        var disqus_identifier = 'http://sviridov.github.io/blog/2014/07/16/code-madness-javascript-is-6-characters/';
+        var disqus_url = 'http://sviridov.github.io/blog/2014/07/16/code-madness-javascript-is-6-characters/';
         var disqus_script = 'embed.js';
       
     (function () {

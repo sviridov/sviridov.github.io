@@ -18,22 +18,28 @@
     </url>
     <url>
         <loc>http://sviridov.github.io/blog/2014/07/14/code-madness-winnuke-it/</loc>
-        <lastmod>2014-07-15T21:13:09+06:00</lastmod>
+        <lastmod>2014-07-15T12:15:10+06:00</lastmod>
     </url>
     <url>
-        <loc>http://sviridov.github.io/</loc>
-        <lastmod>2014-07-15T21:39:05+06:00</lastmod>
-    </url>
-    <url>
-        <loc>http://sviridov.github.io/robots.txt</loc>
-        <lastmod>2014-07-15T21:13:05+06:00</lastmod>
-    </url>
-    <url>
-        <loc>http://sviridov.github.io/blog/categories/</loc>
-        <lastmod>2014-07-15T21:13:09+06:00</lastmod>
+        <loc>
+            http://sviridov.github.io/blog/2014/07/16/code-madness-javascript-is-6-characters/
+        </loc>
+        <lastmod>2014-07-16T16:26:43+06:00</lastmod>
     </url>
     <url>
         <loc>http://sviridov.github.io/blog/archives/</loc>
-        <lastmod>2014-07-15T21:39:05+06:00</lastmod>
+        <lastmod>2014-07-16T16:26:43+06:00</lastmod>
+    </url>
+    <url>
+        <loc>http://sviridov.github.io/blog/categories/</loc>
+        <lastmod>2014-02-24T19:00:08+06:00</lastmod>
+    </url>
+    <url>
+        <loc>http://sviridov.github.io/robots.txt</loc>
+        <lastmod>2014-02-24T18:59:59+06:00</lastmod>
+    </url>
+    <url>
+        <loc>http://sviridov.github.io/</loc>
+        <lastmod>2014-07-16T16:26:43+06:00</lastmod>
     </url>
 </urlset>
