@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Elixir | Свиридов Александр]]></title>
+  <link href="http://sviridov.github.io/blog/categories/elixir/atom.xml" rel="self"/>
+  <link href="http://sviridov.github.io/"/>
+  <updated>2014-08-27T13:09:14+06:00</updated>
+  <id>http://sviridov.github.io/</id>
+  <author>
+    <name><![CDATA[Свиридов Александр]]></name>
+    <email><![CDATA[sviridov.vmi@gmail.com]]></email>
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Elixir: Anaphora]]></title>
+    <link href="http://sviridov.github.io/blog/2014/08/27/elixir-anaphora-library/"/>
+    <updated>2014-08-27T12:59:32+06:00</updated>
+    <id>http://sviridov.github.io/blog/2014/08/27/elixir-anaphora-library</id>
+    <content type="html"><![CDATA[<p>Пока изучал как работают макросы в <a href="http://elixir-lang.org/">Elixir</a>, написал <a href="https://github.com/sviridov/anaphora-elixir">порт</a> библиотеки <a href="http://common-lisp.net/project/anaphora/">Anaphora</a>. Доступно для загрузки с <a href="https://hex.pm/packages/anaphora">hex</a>.</p>
+]]></content>
+  </entry>
+  
+</feed>
