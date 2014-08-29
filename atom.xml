@@ -4,7 +4,7 @@
   <title><![CDATA[Свиридов Александр]]></title>
   <link href="http://sviridov.github.io/atom.xml" rel="self"/>
   <link href="http://sviridov.github.io/"/>
-  <updated>2014-08-27T13:09:14+06:00</updated>
+  <updated>2014-08-29T21:34:27+06:00</updated>
   <id>http://sviridov.github.io/</id>
   <author>
     <name><![CDATA[Свиридов Александр]]></name>
@@ -14,11 +14,25 @@
 
   
   <entry>
+    <title type="html"><![CDATA[Emacs: Elixir Mode v1.5.0]]></title>
+    <link href="http://sviridov.github.io/blog/2014/08/29/emacs-elixir-mode-v1-dot-5-0/"/>
+    <updated>2014-08-29T20:54:43+06:00</updated>
+    <id>http://sviridov.github.io/blog/2014/08/29/emacs-elixir-mode-v1-dot-5-0</id>
+    <content type="html"><![CDATA[<p>Поучаствовал в релизе <a href="https://github.com/elixir-lang/emacs-elixir">elixir-mode</a> версии <a href="https://github.com/elixir-lang/emacs-elixir/releases/tag/v1.5.0">1.5.0</a>. Теперь, команды <code>elixir-mode-string-to-quoted-on-region</code> и <code>elixir-mode-string-to-quoted-on-current-line</code> выводят цитированную версию кода в специальный всплывающий буфер.</p>
+
+<br/>
+
+
+<p><img src="http://sviridov.github.io/images/posts/elixir-emacs-quoted-example.png"></p>
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[Elixir: Anaphora]]></title>
     <link href="http://sviridov.github.io/blog/2014/08/27/elixir-anaphora-library/"/>
     <updated>2014-08-27T12:59:32+06:00</updated>
     <id>http://sviridov.github.io/blog/2014/08/27/elixir-anaphora-library</id>
-    <content type="html"><![CDATA[<p>Пока изучал как работают макросы в <a href="http://elixir-lang.org/">Elixir</a>, написал <a href="https://github.com/sviridov/anaphora-elixir">порт</a> библиотеки <a href="http://common-lisp.net/project/anaphora/">Anaphora</a>. Доступно для загрузки с <a href="https://hex.pm/packages/anaphora">hex</a>.</p>
+    <content type="html"><![CDATA[<p>Пока изучал как работают макросы в <a href="http://elixir-lang.org/">Elixir</a>, написал <a href="https://github.com/sviridov/anaphora-elixir">порт</a> библиотеки <a href="http://common-lisp.net/project/anaphora/">Anaphora</a>. Доступно для загрузки с <a href="https://hex.pm/packages/anaphora">hex</a>.x</p>
 ]]></content>
   </entry>
   
