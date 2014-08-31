@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Elixir | Свиридов Александр]]></title>
   <link href="http://sviridov.github.io/blog/categories/elixir/atom.xml" rel="self"/>
   <link href="http://sviridov.github.io/"/>
-  <updated>2014-08-29T21:34:27+06:00</updated>
+  <updated>2014-08-31T21:07:22+06:00</updated>
   <id>http://sviridov.github.io/</id>
   <author>
     <name><![CDATA[Свиридов Александр]]></name>
@@ -32,7 +32,7 @@
     <link href="http://sviridov.github.io/blog/2014/08/27/elixir-anaphora-library/"/>
     <updated>2014-08-27T12:59:32+06:00</updated>
     <id>http://sviridov.github.io/blog/2014/08/27/elixir-anaphora-library</id>
-    <content type="html"><![CDATA[<p>Пока изучал как работают макросы в <a href="http://elixir-lang.org/">Elixir</a>, написал <a href="https://github.com/sviridov/anaphora-elixir">порт</a> библиотеки <a href="http://common-lisp.net/project/anaphora/">Anaphora</a>. Доступно для загрузки с <a href="https://hex.pm/packages/anaphora">hex</a>.x</p>
+    <content type="html"><![CDATA[<p>Пока изучал как работают макросы в <a href="http://elixir-lang.org/">Elixir</a>, написал <a href="https://github.com/sviridov/anaphora-elixir">порт</a> библиотеки <a href="http://common-lisp.net/project/anaphora/">Anaphora</a>. Доступно для загрузки с <a href="https://hex.pm/packages/anaphora">hex</a>.</p>
 ]]></content>
   </entry>
   
