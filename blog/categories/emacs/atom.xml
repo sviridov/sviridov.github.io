@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Emacs | Свиридов Александр]]></title>
   <link href="http://sviridov.github.io/blog/categories/emacs/atom.xml" rel="self"/>
   <link href="http://sviridov.github.io/"/>
-  <updated>2014-08-31T21:07:22+06:00</updated>
+  <updated>2014-09-07T12:03:49+06:00</updated>
   <id>http://sviridov.github.io/</id>
   <author>
     <name><![CDATA[Свиридов Александр]]></name>
@@ -12,6 +12,15 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Emacs Lisp Style Guide]]></title>
+    <link href="http://sviridov.github.io/blog/2014/09/07/emacs-lisp-style-guide/"/>
+    <updated>2014-09-07T11:56:53+06:00</updated>
+    <id>http://sviridov.github.io/blog/2014/09/07/emacs-lisp-style-guide</id>
+    <content type="html"><![CDATA[<p><a href="https://github.com/bbatsov">Божидар Батсов</a> на днях стартовал <a href="https://github.com/bbatsov/emacs-lisp-style-guide">Emacs Lisp Style Guide</a>. Присоединяйтесь!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Emacs: Elixir Mode v1.5.0]]></title>
