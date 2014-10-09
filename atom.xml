@@ -4,7 +4,7 @@
   <title><![CDATA[Свиридов Александр]]></title>
   <link href="http://sviridov.github.io/atom.xml" rel="self"/>
   <link href="http://sviridov.github.io/"/>
-  <updated>2014-09-07T12:03:49+06:00</updated>
+  <updated>2014-10-09T19:16:51+06:00</updated>
   <id>http://sviridov.github.io/</id>
   <author>
     <name><![CDATA[Свиридов Александр]]></name>
@@ -12,6 +12,70 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Встречайте: undercover.el]]></title>
+    <link href="http://sviridov.github.io/blog/2014/10/06/meet-undercover-dot-el/"/>
+    <updated>2014-10-06T16:23:27+06:00</updated>
+    <id>http://sviridov.github.io/blog/2014/10/06/meet-undercover-dot-el</id>
+    <content type="html"><![CDATA[<p>В арсенале <a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/index.html#Top">Emacs Lisp</a> разработчика доступна весьма неплохая коллекция инструментов для тестирования: <a href="https://github.com/rejeep/evm">evm</a>, <a href="http://www.gnu.org/software/emacs/manual/html_node/ert/">ert</a>, <a href="https://github.com/ecukes/ecukes">ecukes</a>, <a href="https://github.com/cask/cask">Cask</a>, <a href="https://travis-ci.org/">Travis CI</a> и многое-многое другое.</p>
+
+<p>Сегодня я рад анонсировать <a href="https://github.com/sviridov/undercover.el">undercover.el</a> &ndash; новую библиотеку, рассчитывающую покрытие тестами файлов вашего <a href="https://www.gnu.org/software/emacs/manual/html_node/elisp/index.html#Top">Emacs Lisp</a> проекта и визуализирующую результат с помощью сервиса <a href="https://coveralls.io/">Coveralls</a>.</p>
+
+<p><img src="http://sviridov.github.io/images/posts/undercover-and-coveralls.png" width="800"></p>
+
+<!-- more -->
+
+
+<p>Добавить <a href="https://github.com/sviridov/undercover.el">undercover.el</a> в ваш проект очень просто:</p>
+
+<ul>
+<li><p>Добавьте свой репозиторий в <a href="https://coveralls.io/">Coveralls</a>.</p></li>
+<li><p>Добавьте <a href="https://github.com/sviridov/undercover.el">undercover.el</a> в <a href="https://github.com/cask/cask">Cask</a> файл проекта:</p></li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='common-lisp'><span class='line'><span class="p">(</span><span class="nv">source</span> <span class="nv">gnu</span><span class="p">)</span>
+</span><span class='line'><span class="p">(</span><span class="nv">source</span> <span class="nv">melpa</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="nv">package-file</span> <span class="s">&quot;awesome-package.el&quot;</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="nv">development</span>
+</span><span class='line'>  <span class="p">(</span><span class="nv">depends-on</span> <span class="s">&quot;undercover&quot;</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Перед тем как загрузить ваш проект для тестирования (например, в файле <code>test/test-helper.el</code>, если вы используете <a href="https://github.com/rejeep/ert-runner.el">ert-runner</a>), укажите, для каких файлов будет выполняться проверка покрытия тестами:</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='common-lisp'><span class='line'><span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;undercover</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="nv">undercover</span> <span class="s">&quot;*.el&quot;</span> <span class="s">&quot;awesome-extensions/*.el&quot;</span> <span class="p">(</span><span class="ss">:exclude</span> <span class="s">&quot;*-test.el&quot;</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="nb">require</span> <span class="ss">&#39;awesome-package</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Все! При следующей сборке проекта в <a href="https://travis-ci.org/">Travis CI</a> отчет по покрытию тестами будет автоматически сформирован и отправлен.</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Emacs Lisp Style Guide]]></title>

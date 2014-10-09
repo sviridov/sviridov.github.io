@@ -2,29 +2,29 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://sviridov.github.io/blog/2014/06/28/emacs-ruby-static-code-analysis/</loc>
-        <lastmod>2014-07-21T17:03:04+06:00</lastmod>
+        <lastmod>2014-08-04T16:09:43+06:00</lastmod>
     </url>
     <url>
         <loc>http://sviridov.github.io/blog/2014/06/29/code-madness-join-to-the-dark-side/</loc>
-        <lastmod>2014-07-15T21:38:12+06:00</lastmod>
+        <lastmod>2014-08-04T16:09:43+06:00</lastmod>
     </url>
     <url>
         <loc>http://sviridov.github.io/blog/2014/07/01/emacs-dynamic-elisp-highlighting/</loc>
-        <lastmod>2014-07-21T17:03:19+06:00</lastmod>
+        <lastmod>2014-08-04T16:09:43+06:00</lastmod>
     </url>
     <url>
         <loc>http://sviridov.github.io/blog/2014/07/03/emacs-editorconfig/</loc>
-        <lastmod>2014-07-15T21:39:05+06:00</lastmod>
+        <lastmod>2014-08-04T16:09:43+06:00</lastmod>
     </url>
     <url>
         <loc>http://sviridov.github.io/blog/2014/07/14/code-madness-winnuke-it/</loc>
-        <lastmod>2014-07-15T21:13:09+06:00</lastmod>
+        <lastmod>2014-08-04T16:09:43+06:00</lastmod>
     </url>
     <url>
         <loc>
             http://sviridov.github.io/blog/2014/07/16/code-madness-javascript-is-6-characters/
         </loc>
-        <lastmod>2014-07-16T16:26:43+06:00</lastmod>
+        <lastmod>2014-08-04T16:09:43+06:00</lastmod>
     </url>
     <url>
         <loc>
@@ -45,19 +45,23 @@
         <lastmod>2014-09-07T12:03:48+06:00</lastmod>
     </url>
     <url>
-        <loc>http://sviridov.github.io/</loc>
-        <lastmod>2014-09-07T12:03:48+06:00</lastmod>
-    </url>
-    <url>
-        <loc>http://sviridov.github.io/robots.txt</loc>
-        <lastmod>2014-07-15T21:13:05+06:00</lastmod>
-    </url>
-    <url>
-        <loc>http://sviridov.github.io/blog/categories/</loc>
-        <lastmod>2014-07-15T21:13:09+06:00</lastmod>
+        <loc>http://sviridov.github.io/blog/2014/10/06/meet-undercover-dot-el/</loc>
+        <lastmod>2014-10-09T19:16:34+06:00</lastmod>
     </url>
     <url>
         <loc>http://sviridov.github.io/blog/archives/</loc>
-        <lastmod>2014-09-07T12:03:48+06:00</lastmod>
+        <lastmod>2014-10-09T19:16:34+06:00</lastmod>
+    </url>
+    <url>
+        <loc>http://sviridov.github.io/blog/categories/</loc>
+        <lastmod>2014-08-04T16:09:43+06:00</lastmod>
+    </url>
+    <url>
+        <loc>http://sviridov.github.io/robots.txt</loc>
+        <lastmod>2014-08-04T16:09:25+06:00</lastmod>
+    </url>
+    <url>
+        <loc>http://sviridov.github.io/</loc>
+        <lastmod>2014-10-09T19:16:34+06:00</lastmod>
     </url>
 </urlset>
